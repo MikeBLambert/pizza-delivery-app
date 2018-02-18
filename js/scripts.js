@@ -1,46 +1,52 @@
 //Business Logic
-// function UserInfo(name,street,city,state,zip) {
-//   this.name = name;
-//   this.street = street;
-//   this.city = city;
-//   this.state = state;
-//   this.zip = zip;
-// };
+function Pizza (size,toppings) {
+  this.size = size;
+  this.toppings = toppings;
+  };
+
+Pizza.prototype.sizePrice = function() {
+  if (this.size == "small") {
+    return 7;
+  } else if (this.size == "medium") {
+    return 10;
+  } else {
+    return 13;
+  }
+};
+
+Pizza.prototype.toppingPrice = function() {
+  var priceForToppings = 0;
+  console.log(this.toppings);
+  for (i=0; i<this.toppings.length; i+=1) {
+    if (this.toppings[i] === "cheese") {
+      priceForToppings += 1
+      console.log(priceForToppings);
+    } else if (this.toppings[i] === "pepperoni") {
+      priceForToppings += 2
+      console.log(priceForToppings);
+    } else if (this.toppings[i] ==="olives") {
+      priceForToppings += 1
+    } else if (this.toppings[i] === "peppers") {
+      priceForToppings += 2
+    }
+  }
+  return priceForToppings;
+};
 
 
-
-//User Interface Logic
+//User Interface
 $(document).ready(function() {
   $("#addPizza").click(function() {
   event.preventDefault();
-    console.log("hello")
+    var size = $("input:radio[name=size]:checked").val();
+    var toppings = [];
+    $("input:checkbox[name=toppings]:checked").each(function() {
+      toppings.push($(this).val());
+    });
+    var pizza = new Pizza(size,toppings);
+    var price = pizza.toppingPrice() + pizza.sizePrice();
 
-    $("#newPizza").append("<form id='pizzaOrder'>"+
-      "<div class='form-group'>"+
-        "<div class='container'>"+
-          "<h2>NEXT PIZZA</h2>"+
-          "<h3>What size pizza would you like?</h3>"+
-          "<div class='radio'>"+
-            "<label><input type='radio' id='sizeSmall'>Small</input></label>"+
-            "<label><input type='radio' id='sizeMedium'>Medium</input></label>"+
-            "<label><input type='radio' id='sizeLarge'>Large</input></label>"+
-          "</div>"+
-          "<h3>What toppings would you like on your pizza?</h3>"+
-          "<div class='checkbox'>"+
-            "<label><input type='checkbox' id='toppingCheese'>Cheese</input></label>"+
-            "<label><input type='checkbox' id='toppingPepperoni'>Pepperoni</input></label>"+
-            "<label><input type='checkbox' id='toppingOlives'>Olives</input></label>"+
-            "<label><input type='checkbox' id='toppingPeppers'>Peppers</input></label>"+
-          "</div>"+
-        "</div>"+
-      "</div>"+
-    "</form>"
-
-  );
+    document.getElementById("pizzaInfoForm").reset();
+    $("#displayOrderInfo").append("<h1>Shopping Cart:</h1>" +" One " + pizza.size+" pizza with the following toppings: "+ "<li>"+pizza.toppings+"</li>"+"This pizza will cost $"+price);
   });
 });
-// $(document).ready(function() {
-//   $("#pizzaOrder").submit(function(event) {
-//   event.preventDefault();
-//   });
-// });

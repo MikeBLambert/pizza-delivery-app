@@ -7,45 +7,58 @@
     <title>Pizza Delivery</title>
   </head>
   <body>
-    <form id="pizzaOrder">
-      <div class="container">
-        <div class="form-group">
-
-          <h2>Please enter your contact information</h2>
-          <label for="user-name">Name:</label>
-          <input id="user-name" type="text" class="form-control">
-          <label for="user-street">Street:</label>
-          <input id="user-street" type="text" class="form-control">
-          <label for="user-city">City:</label>
-          <input id="user-city" type="text" class="form-control">
-          <label for="user-state">State:</label>
-          <input id="user-state" type="text" class="form-control">
-          <label for="user-zip">Zip:</label>
-          <input id="user-zip" type="text" class="form-control">
-
-          <div id="newPizza">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="container">
+          <form id="userInfoForm">
+            <div class="form-group">
+              <h2>Please enter your contact information</h2>
+              <label for="user-name">Name:</label>
+              <input id="user-name" type="text" class="form-control">
+              <label for="user-street">Street:</label>
+              <input id="user-street" type="text" class="form-control">
+              <label for="user-city">City:</label>
+              <input id="user-city" type="text" class="form-control">
+              <label for="user-state">State:</label>
+              <input id="user-state" type="text" class="form-control">
+              <label for="user-zip">Zip:</label>
+              <input id="user-zip" type="text" class="form-control">
+            </div>
+          </form>
+          <form id="pizzaInfoForm">
             <h3>What size pizza would you like?</h3>
-            <div class="radio">
-              <label><input type="radio" id="sizeSmall">Small</input></label>
-              <label><input type="radio" id="sizeMedium">Medium</input></label>
-              <label><input type="radio" id="sizeLarge">Large</input></label>
+            <div id="sizeChoice">
+              <div class="radio">
+                <label><input type="radio" id="sizeSmall" name="size" value="small">Small</label>
+                <br>
+                <label><input type="radio" id="sizeMedium" name="size" value="medium">Medium</label>
+                <br>
+                <label><input type="radio" id="sizeLarge" name="size" value="large">Large</label>
+              </div>
             </div>
             <h3>What toppings would you like on your pizza?</h3>
-            <div class="checkbox">
-              <label><input type="checkbox" id="toppingCheese">Cheese</input></label>
-              <label><input type="checkbox" id="toppingPepperoni">Pepperoni</input></label>
-              <label><input type="checkbox" id="toppingOlives">Olives</input></label>
-              <label><input type="checkbox" id="toppingPeppers">Peppers</input></label>
+            <div id=toppingChoice>
+              <div class="checkbox">
+                <label><input type="checkbox" id="toppingCheese" name="toppings" value="cheese">Cheese</label>
+                <br>
+                <label><input type="checkbox" id="toppingPepperoni" name="toppings" value="pepperoni">Pepperoni</label>
+                <br>
+                <label><input type="checkbox" id="toppingOlives" name="toppings" value="olives">Olives</label>
+                <br>
+                <label><input type="checkbox" id="toppingPeppers" name="toppings" value="peppers">Peppers</label>
+              </div>
             </div>
-          </div>
+            <button class="btn btn-info btn-lg" id="addPizza">Add Pizza to Cart</button>
+            <div class="container">
+              <div id="displayOrderInfo">
+              </div>
+            </div>
+            <button class="btn btn-success btn-lg" id="submitOrder">Submit Order</button>
+          </form>
 
-
-          <button class="btn btn-info btn-md" id="addPizza">Add Another Pizza</button>
-
-          <button class="btn btn-success btn-lg" id="submit">Submit Order</button>
         </div>
       </div>
-    </form>
+    </div>
 
   </body>
 </html>
