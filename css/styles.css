@@ -1,0 +1,15 @@
+#shoppingCart {
+  display: none;
+}
+
+button#submitOrder {
+  display: none;
+}
+
+#userInfoForm {
+  display: none;
+}
+
+#finalOrderDisplay {
+  display: none;
+}
