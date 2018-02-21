@@ -2,6 +2,11 @@
   display: none;
 }
 
+span#toppingAlert {
+  display: none;
+  color: yellow;
+}
+
 button#submitOrder {
   display: none;
 }
@@ -12,4 +17,26 @@ button#submitOrder {
 
 #finalOrderDisplay {
   display: none;
+}
+
+body {
+  background-image: url(../img/pizza-background.jpg);
+  background-size: 100%;
+  color: white;
+}
+
+form#userInfoForm {
+  width: 50%;
+}
+
+#shoppingCart {
+  width: 50%;
+}
+
+#finalOrderInfo {
+  border: solid white 5px;
+  font-size: 25px;
+  padding: 4px;
+  width: 50%;
+  text-align: center;
 }

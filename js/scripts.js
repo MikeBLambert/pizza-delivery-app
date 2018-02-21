@@ -5,6 +5,12 @@ function Pizza (size,toppings) {
   this.toppings = toppings;
   };
 
+// function atLeastOneTopping(toppings) {
+//   if (toppings.length < 1) {
+//     alert("Please choose a topping!");
+//   }
+// }
+
 //Object that stores the user's information
 function UserInfo (firstName,lastName,streetAddress,city,state,zip) {
     this.firstName = firstName;
@@ -13,10 +19,11 @@ function UserInfo (firstName,lastName,streetAddress,city,state,zip) {
     this.city = city;
     this.state = state;
     this.zip = zip;
-    // this.userPizza = [];
-    // this.userPrice = [];
   };
 
+  var totalPrice = 0
+
+//Calculates the price of a pizza
 Pizza.prototype.pizzaPrice = function() {
   var pizzaPrice = 0;
   if (this.size == "small") {
@@ -26,52 +33,21 @@ Pizza.prototype.pizzaPrice = function() {
   } else if (this.size == "large") {
     pizzaPrice += 13;
   }
-  for (i=0; i<this.toppings.length; i+=1) {
-    if (this.toppings[i] === "cheese") {
+  for (i=-1; i<this.toppings.length; i+=1) {
+    if (this.toppings[i] === "Cheese") {
       pizzaPrice += 1
-    } else if (this.toppings[i] === "pepperoni") {
+    } else if (this.toppings[i] === "Pepperoni") {
       pizzaPrice += 2
-    } else if (this.toppings[i] ==="olives") {
+    } else if (this.toppings[i] ==="Olives") {
       pizzaPrice += 1
-    } else if (this.toppings[i] === "peppers") {
+    } else if (this.toppings[i] === "Peppers") {
       pizzaPrice += 2
-    } else {
-      return alert("Please select a topping")
+    } else if (this.toppings.length === 0) {
+      pizzaPrice += 0
     }
   return pizzaPrice;
   };
 };
-
-var totalPrice = 0
-// function noSizeSelection(x) {
-//   if (x === undefined) {
-//     return alert("please select a pizza size!")
-//   }
-// };
-//
-// function noToppingSelection(x) {
-//   if (x.length === 0) {
-//     return alert("Please select a topping!")
-//   }
-// }
-
-// Pizza.prototype.toppingPrice = function() {
-//   var priceForToppings = 0;
-//   for (i=0; i<this.toppings.length; i+=1) {
-//     if (this.toppings[i] === "cheese") {
-//       priceForToppings += 1
-//     } else if (this.toppings[i] === "pepperoni") {
-//       priceForToppings += 2
-//     } else if (this.toppings[i] ==="olives") {
-//       priceForToppings += 1
-//     } else if (this.toppings[i] === "peppers") {
-//       priceForToppings += 2
-//     }
-//   }
-//   return priceForToppings;
-// };
-
-
 
 //User Interface
 $(document).ready(function() {
@@ -82,20 +58,37 @@ $(document).ready(function() {
     $("input:checkbox[name=toppings]:checked").each(function() {
       toppings.push($(this).val());
     });
-    // noToppingSelection(toppings);
-    // noSizeSelection(size);
+
     var pizza = new Pizza(size,toppings);
     var price = pizza.pizzaPrice();
 
-    document.getElementById("pizzaInfoForm").reset();
-    $("#shoppingCart").show();
-    $("button#submitOrder").show();
-    $("#userInfoForm").show();
-    $("#displayOrderInfo").append(
-      "<h3><li>One " + pizza.size + " pizza. <br>Toppings: <ul>" + pizza.toppings.join("<br>") +"</ul>" + "Price: $" + price + "</li></h3>");
-    totalPrice += price
-    console.log(totalPrice);
-    });
+    // atLeastOneTopping(toppings)
+    if (pizza.toppings.length >= 1) {
+      document.getElementById("pizzaInfoForm").reset();
+      $("#toppingAlert").hide();
+      $("#shoppingCart").show();
+      $("button#submitOrder").show();
+      $("#userInfoForm").show();
+
+      $("#displayOrderInfo").append(
+        "<div class='row'>" +
+          "<div class='col-md-4'>" +
+            "<li>One " + pizza.size + " pizza. <br>" +
+          "</div>" +
+          "<div class='col-md-4'>" +
+            "TOPPINGS: <ul>" + pizza.toppings.join("<br>") + "</ul>" +
+          "</div>" +
+          "<div class='col-md-4'>" +
+            "Price: $" + price + "</li></h4>" +
+          "</div>" +
+        "</div>");
+      totalPrice += price
+
+    } else {
+      $("#toppingAlert").show();
+    };
+  });
+
   $("#userInfoForm").submit(function(event) {
     event.preventDefault();
     var firstName = $("#user-first-name").val();
@@ -105,10 +98,13 @@ $(document).ready(function() {
     var state = $("#user-state").val();
     var zip = $("#user-zip").val();
     var userInfo = new UserInfo(firstName,lastName,streetAddress,city,state,zip);
+
     $("#userInfoForm").hide();
     $("#pizzaInfoForm").hide();
+    $("#welcomeTitle").hide();
     $("#shoppingCart").hide();
     $("#finalOrderDisplay").show();
+
     $("#finalOrderInfo").append(
       userInfo.firstName + " " + userInfo.lastName +
       "<br>" +
@@ -116,7 +112,8 @@ $(document).ready(function() {
       "<br>" +
       userInfo.city + ", " + userInfo.state + " " + userInfo.zip +
       "<br>" +
-      "The total amount due is $" + totalPrice
+      "<br>" +
+      "The total amount due is $" + totalPrice +".00"
     );
   });
 });

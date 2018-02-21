@@ -4,10 +4,11 @@
     <link rel="stylesheet" href="css/styles.css" type="text/css">
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/scripts.js"></script>
-    <title>Pizza Delivery</title>
+    <title>Pizzarama</title>
   </head>
   <body>
     <div class="container">
+      <span id="welcomeTitle"><h1>Welcome to Pizzarama</h1></span>
       <form id="pizzaInfoForm">
         <h3>What size pizza would you like?</h3>
         <div id="sizeChoice">
@@ -22,20 +23,21 @@
         <h3>What toppings would you like on your pizza?</h3>
         <div id=toppingChoice>
           <div class="checkbox">
-            <label><input type="checkbox" id="toppingCheese" name="toppings" value="cheese">Cheese</label>
+            <label><input type="checkbox" id="toppingCheese" name="toppings" value="Cheese">Cheese</label>
             <br>
-            <label><input type="checkbox" id="toppingPepperoni" name="toppings" value="pepperoni">Pepperoni</label>
+            <label><input type="checkbox" id="toppingPepperoni" name="toppings" value="Pepperoni">Pepperoni</label>
             <br>
-            <label><input type="checkbox" id="toppingOlives" name="toppings" value="olives">Olives</label>
+            <label><input type="checkbox" id="toppingOlives" name="toppings" value="Olives">Olives</label>
             <br>
-            <label><input type="checkbox" id="toppingPeppers" name="toppings" value="peppers">Peppers</label>
+            <label><input type="checkbox" id="toppingPeppers" name="toppings" value="Peppers">Peppers</label>
           </div>
+          <span id="toppingAlert">Please choose a topping.</span>
         </div>
-        <button class="btn btn-info btn-lg" id="addPizza">Add Pizza to Cart</button>
+        <button class="btn btn-danger btn-lg" id="addPizza">Add Pizza to Cart</button>
       </form>
       <div class="container">
         <div id="shoppingCart">
-          <h1>Shopping Cart:</h1>
+          <h3>Shopping Cart:</h3>
           <ol><span id = "displayOrderInfo"></span><ol>
         </div>
       </div>
@@ -43,29 +45,28 @@
         <div class="form-group">
           <h2>Please enter your contact information</h2>
           <label for="user-first-name">First Name:</label>
-          <input id="user-first-name" type="text" class="form-control">
+          <input id="user-first-name" type="text" class="form-control" required>
           <label for="user-last-name">Last Name:</label>
-          <input id="user-last-name" type="text" class="form-control">
+          <input id="user-last-name" type="text" class="form-control" required>
           <label for="user-street-address">Street Address:</label>
-          <input id="user-street-address" type="text" class="form-control">
+          <input id="user-street-address" type="text" class="form-control" required>
           <label for="user-city">City:</label>
-          <input id="user-city" type="text" class="form-control">
+          <input id="user-city" type="text" class="form-control" required>
           <label for="user-state">State:</label>
-          <input id="user-state" type="text" class="form-control">
+          <input id="user-state" type="text" class="form-control" required>
           <label for="user-zip">Zip:</label>
-          <input id="user-zip" type="text" class="form-control">
+          <input id="user-zip" type="text" class="form-control" required>
         </div>
-        <button class="btn btn-success btn-lg" id="submitOrder">Submit Order</button>
+        <button class="btn btn-danger btn-lg" id="submitOrder">Submit Order</button>
       </form>
     </div>
     <div class="container">
       <div id = "finalOrderDisplay">
-        <h1>Thank you so much for your business!</h1>
+        <h1>Thanks for your business!</h1>
         <h2>Your order will be delivered to:</h2>
         <br>
         <div id = "finalOrderInfo"></div>
       </div>
     </div>
-
   </body>
 </html>
